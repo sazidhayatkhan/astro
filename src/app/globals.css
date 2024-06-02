@@ -1,33 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    max-width: 3260px;
+    margin: auto;
+    background-color: #FAFAFA;
+}
+@layer base {
+    ._container {
+        @apply max-w-[1920px] mx-auto px-[3%] md:px-[8%];
+    }
+    .__playfair {
+        font-family: "Playfair Display", sans-serif;
+      }
+}
+.button-hover {
+    position: relative;
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; /* Adjust font size as needed */
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 10px 20px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.button-hover .text {
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.button-hover .text-astro {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.button-hover .text-hovered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.button-hover:hover .text-astro {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.button-hover:hover .text-hovered {
+    margin-top: 18px;
+    transform: translateY(0);
+    opacity: 1;
 }

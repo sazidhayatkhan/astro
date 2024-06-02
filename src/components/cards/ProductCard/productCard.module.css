@@ -1,0 +1,47 @@
+.card {
+    position: relative;
+    border: 1px solid #ddd;
+    overflow: hidden;
+  }
+  
+  .drawer {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: white; /* Semi-transparent white */
+    /* backdrop-filter: blur(10px); Blur effect */
+    border: 1px solid black; /* Semi-transparent border */
+    transition: bottom 0.3s ease-in-out;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Optional shadow for depth */
+  }
+  
+  .drawer.open {
+    bottom: 0;
+  }
+  
+  .card:hover .drawer {
+    bottom: 0;
+  }
+  
+  
+  .imageWrapper {
+    position: relative;
+  }
+  
+  .imageWrapper:hover + .drawer, .button:hover + .drawer {
+    bottom: 0;
+  }
+  
+  .button {
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    font-weight: medium;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+
+  

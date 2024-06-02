@@ -1,0 +1,24 @@
+.hero_section {
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-size: cover;
+    background-position: top;
+}
+  
+  /* Background image for PC screens */
+@media (min-width: 768px) {
+    .hero_section {
+      background-image: url('/images/hero.webp');
+    }
+}
+  
+  /* Background image for mobile screens */
+@media (max-width: 767px) {
+    .hero_section {
+      background-image: url('/images/hero_mobile.webp');
+    }
+}
+  
