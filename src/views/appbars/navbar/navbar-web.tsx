@@ -1,4 +1,6 @@
 "use client"
+import SidecartDrawer from '@/components/drawers/SidecartDrawer'
+import useDrawerStore from '@/stores/useDrawerStore'
 import React,{useState,useEffect} from 'react'
 import { FaRegUser } from 'react-icons/fa6'
 import { HiOutlineShoppingBag } from 'react-icons/hi2'
@@ -6,7 +8,7 @@ type Props = {}
 
 const NavbarWebUI = (props: Props) => {
   const [bgColor, setBgColor] = useState('bg-transparent');   //changing navbar background color
-
+  const { openDrawer }:any = useDrawerStore();
   useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) { 
@@ -37,9 +39,10 @@ const NavbarWebUI = (props: Props) => {
           </div>
           <div className='flex justify-end items-center gap-3'>
             <button className='text-xl'><FaRegUser /></button>
-            <button className='text-2xl'><HiOutlineShoppingBag /></button>
+            <button onClick={openDrawer} className='text-2xl'><HiOutlineShoppingBag /></button>
           </div>
         </nav>
+        <SidecartDrawer/>
     </>
   )
 }

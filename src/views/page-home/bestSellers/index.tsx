@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCard from '@/components/cards/ProductCard'
+import SidecartDrawer from '@/components/drawers/SidecartDrawer'
 
 type Props = {}
 
