@@ -1,11 +1,15 @@
-import React from 'react'
+'use client'
+import React,{useState} from 'react'
 import ProductCard from '@/components/cards/ProductCard'
 import SidecartDrawer from '@/components/drawers/SidecartDrawer'
+import Modal from '@/components/modals/AdvertiseModal'
+import useModalStore from '@/stores/useModalStore'
 
 type Props = {}
 
 const BestSellersUI = (props: Props) => {
   return (
+    <>
     <div className='_container'>
         <p className='__playfair text-4xl md:text-5xl text-center pt-14 pb-12'>Shop Best Sellers</p>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
@@ -19,6 +23,8 @@ const BestSellersUI = (props: Props) => {
             }
         </div>
     </div>
+    <Modal/>
+    </>
   )
 }
 
