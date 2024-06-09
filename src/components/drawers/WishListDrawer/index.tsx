@@ -5,8 +5,7 @@ import useDrawerStore from '@/stores/useDrawerStore';
 
 const WishListDrawer = () => {
   const { isWishOpen, closeWishDrawer }:any = useDrawerStore();
-    console.log("I AM OPEN");
-    
+
   useEffect(() => {
     if (isWishOpen) {
       document.body.classList.add('no-scroll');
