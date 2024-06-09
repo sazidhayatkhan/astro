@@ -1,9 +1,3 @@
-.card {
-    position: relative;
-    border: 1px solid #ddd;
-    overflow: hidden;
-  }
-  
   .drawer {
     position: absolute;
     bottom: -100%;
