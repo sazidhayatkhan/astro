@@ -1,12 +1,19 @@
-import ShopUI from '@/views/page-shop'
-import React from 'react'
+import React from 'react';
+import Loader from '@/components/loader';
+import { fetchData } from '@/utils/useFetch';
+import ShopUI from '@/views/page-shop';
 
-type Props = {}
 
-const page = (props: Props) => {
+const Page = async () => {
+  const { data, error } = await fetchData('https://dummyjson.com/products');
+
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
-    <ShopUI/>
-  )
-}
+    <>
+      {!data ? <Loader /> : <ShopUI data={data?.products}/>}
+    </>
+  );
+};
 
-export default page
+export default Page;

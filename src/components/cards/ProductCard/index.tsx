@@ -39,7 +39,7 @@ const ProductCard = ({ item }: Props) => {
             <div className="relative overflow-hidden" onMouseLeave={handleMouseLeave}>
                 <div className={`${styles.imageWrapper}`} onMouseEnter={handleMouseEnter}>
                     <Image
-                        src={item?.img || '/'}
+                        src={item?.thumbnail || '/'}
                         alt="img-product"
                         width={0}
                         height={0}
