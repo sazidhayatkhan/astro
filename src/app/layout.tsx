@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/views/appbars/navbar";
 import WishListDrawer from "@/components/drawers/WishListDrawer";
-import Modal from "@/components/modals/AdvertiseModal";
-import OfferButton from "@/components/buttons/OfferButton";
+import SidecartDrawer from "@/components/drawers/SidecartDrawer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar/>
+        <SidecartDrawer/>
         <WishListDrawer/>
         {children}
-        <Modal/>
-        <OfferButton/>
       </body>
     </html>
   );

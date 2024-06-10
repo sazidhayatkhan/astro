@@ -5,17 +5,19 @@ import SidecartDrawer from '@/components/drawers/SidecartDrawer'
 import Modal from '@/components/modals/AdvertiseModal'
 import useModalStore from '@/stores/useModalStore'
 
-type Props = {}
+type Props = {
+    data?:any;
+}
 
-const BestSellersUI = (props: Props) => {
+const BestSellersUI = ({data}: Props) => {
   return (
     <>
     <div className='_container'>
         <p className='__playfair text-4xl md:text-5xl text-center pt-14 pb-12'>Shop Best Sellers</p>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
             {
-                ProductsData?.length > 0 ? 
-                ProductsData?.map((item:any,i:any)=>(
+                data?.length > 0 ? 
+                data?.slice(0,4)?.map((item:any,i:any)=>(
                     <ProductCard key={i} item={item}/>
                 ))
                 :
