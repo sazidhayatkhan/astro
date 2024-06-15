@@ -18,7 +18,7 @@ const BestSellersUI = ({data}: Props) => {
             {
                 data?.length > 0 ? 
                 data?.slice(0,4)?.map((item:any,i:any)=>(
-                    <ProductCard key={i} item={item}/>
+                    <ProductCard key={i} product={item}/>
                 ))
                 :
                 <></>

@@ -12,7 +12,7 @@ const ShopUI = ({data}: Props) => {
       <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
           {
               data?.map((item:any,i:any)=>(
-                  <ProductCard key={i} item={item} />
+                  <ProductCard key={i} product={item} />
               ))
           }
       </div>
