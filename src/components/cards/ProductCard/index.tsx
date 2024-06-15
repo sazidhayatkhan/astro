@@ -5,14 +5,20 @@ import Image from 'next/image';
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdStar, IoMdStarOutline } from 'react-icons/io';
 import useDrawerStore from '@/stores/useDrawerStore';
+import useCartStore from '@/stores/useCartStore';
 
 type Props = {
-    item?: any;
+    product?: any;
 };
 
-const ProductCard = ({ item }: Props) => {
+const ProductCard = ({ product }: Props) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const { openWishDrawer }:any = useDrawerStore();
+    const addToCart = useCartStore((state:any) => state.addToCart);
+
+    const handleAddToCart = () => {
+        addToCart(product);
+    };
 
     const handleMouseEnter = () => {
         setIsDrawerOpen(true);
@@ -25,21 +31,23 @@ const ProductCard = ({ item }: Props) => {
 
     return (
         <div className='border border-[#ddd]'>
-            <div className='h-[82px] p-3 flex justify-between items-start'>
+            <div className='h-[82px] p-3 flex justify-between products-start'>
                 <div className='w-full'>
-                    <p className='text-lg leading-[20px] mb-2 line-clamp-2'>{item?.title}</p>
-                    {item?.discountPrice === '' || item?.discountPrice === null ? (
-                        <p className='text-sm'>${item?.price}</p>
+                    <p className='text-lg leading-[20px] mb-2 line-clamp-2'>{product?.title}</p>
+                    {product?.discountPrice === '' || product?.discountPrice === null ? (
+                        <p className='text-sm'>${product?.price}</p>
                     ) : (
-                        <p className='text-sm'>$<span className='text-red-500 font-semibold me-[2px]'>&nbsp;{item?.discountPrice}</span><span className='line-through text-slate-300'>{item?.price}</span></p>
+                        <p className='text-sm'>$<span className='text-red-500 font-semibold me-[2px]'>&nbsp;{product?.discountPrice}</span><span className='line-through text-slate-300'>{product?.price}</span></p>
                     )}
                 </div>
-                <button onClick={openWishDrawer} className='text-sm border border-black rounded-full p-2'><FaRegHeart/></button>
+                <div>
+                    <button onClick={openWishDrawer} className='text-sm border border-black rounded-full p-2'><FaRegHeart/></button>
+                </div>
             </div>
             <div className="relative overflow-hidden" onMouseLeave={handleMouseLeave}>
                 <div className={`${styles.imageWrapper}`} onMouseEnter={handleMouseEnter}>
                     <Image
-                        src={item?.thumbnail || '/'}
+                        src={product?.thumbnail || '/'}
                         alt="img-product"
                         width={0}
                         height={0}
@@ -54,11 +62,11 @@ const ProductCard = ({ item }: Props) => {
                     <div>
                         <div className='p-[10px]'>
                             <div className=' border-black border-b-[1px] pb-2'>
-                                <p className='text-sm font-semibold'>{item?.title}</p>
+                                <p className='text-sm font-semibold'>{product?.title}</p>
                                 {/* <p className='text-xs mt-[2px]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In natus alias iste blanditiis illum explicabo, incidunt similique veritatis distinctio deserunt?</p> */}
                             </div>
-                            {/* <div className='flex justify-between items-center border-black border-b-[1px] py-2'>
-                                <div className='flex justify-start items-center gap-1'>
+                            {/* <div className='flex justify-between products-center border-black border-b-[1px] py-2'>
+                                <div className='flex justify-start products-center gap-1'>
                                         <div className='bg-red-400 w-[20px] h-[20px]'/>
                                         <div className='bg-blue-400 w-[20px] h-[20px]'/>
                                         <div className='bg-orange-400 w-[20px] h-[20px]'/>
@@ -68,8 +76,8 @@ const ProductCard = ({ item }: Props) => {
                             <div className='border-black border-b-[1px] py-2'>
                                 <p className='text-xs font-semibold text-[#50b996] text-center'>Mitten Extracts</p>
                             </div>
-                            <div className='flex justify-between items-center border-black border-b-[1px] py-2'>
-                                <div className='flex justify-start items-center gap-[2px]'>
+                            <div className='flex justify-between products-center border-black border-b-[1px] py-2'>
+                                <div className='flex justify-start products-center gap-[2px]'>
                                     <IoMdStar/>
                                     <IoMdStar/>
                                     <IoMdStar/>
@@ -78,14 +86,14 @@ const ProductCard = ({ item }: Props) => {
                                 </div>
                                 <p>$ 23</p>
                             </div>
-                            <div className='pt-2 text-xs flex justify-between items-center'>
+                            <div className='pt-2 text-xs flex justify-between products-center'>
                                 <p className='font-semibold'>Sativa</p>
                                 <p><span className='font-semibold'>CBD :</span> 23%</p>
                                 <p><span className='font-semibold'>THC :</span> 20%</p>
                             </div>
                         </div>
-                        <button className="border-black border-t-[1px] bg-[#72f2c7] text-black transition duration-500 py-[10px] w-full text-sm">
-                            ADD TO BAG | $&nbsp;{item?.price}
+                        <button onClick={handleAddToCart} className="border-black border-t-[1px] bg-[#72f2c7] text-black transition duration-500 py-[10px] w-full text-sm">
+                            ADD TO BAG | $&nbsp;{product?.price}
                         </button>
                     </div>
                 </div>
