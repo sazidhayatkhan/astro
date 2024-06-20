@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/views/appbars/navbar";
 import WishListDrawer from "@/components/drawers/WishListDrawer";
 import SidecartDrawer from "@/components/drawers/SidecartDrawer";
+import PurchaseModal from "@/components/modals/PurchaseModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Navbar/>
         <SidecartDrawer/>
         <WishListDrawer/>
+        <PurchaseModal/>
         {children}
       </body>
     </html>

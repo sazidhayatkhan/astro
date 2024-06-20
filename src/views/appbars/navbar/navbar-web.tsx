@@ -6,11 +6,15 @@ import { FaRegUser } from 'react-icons/fa6'
 import { HiOutlineShoppingBag } from 'react-icons/hi2'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import useCartStore from '@/stores/useCartStore'
+import useModalStore from '@/stores/useModalStore'
 type Props = {}
 
 const NavbarWebUI = (props: Props) => {
   const [bgColor, setBgColor] = useState('bg-transparent');   //changing navbar background color
   const { openDrawer }:any = useDrawerStore();
+  const { openPurchaseModal }:any = useModalStore()
+  const cart = useCartStore((state:any) => state.cart);
   const pathname = usePathname()
   useEffect(() => {
         const handleScroll = () => {
@@ -46,7 +50,14 @@ const NavbarWebUI = (props: Props) => {
           </div>
           <div className='flex justify-end items-center gap-3'>
             <button className='text-xl'><FaRegUser /></button>
-            <button onClick={openDrawer} className='text-2xl'><HiOutlineShoppingBag /></button>
+            <button onClick={openDrawer} className='text-2xl relative'><HiOutlineShoppingBag />
+            {
+              cart?.length > 0 &&
+              <span className='bg-[#72f2c7] text-black absolute top-[-12px] right-[-9px] rounded-full text-xs font-semibold w-[22px] h-[22px] flex justify-center items-center'>
+                {cart?.length}
+              </span>
+            }
+            </button>
           </div>
         </nav>
         <SidecartDrawer/>
