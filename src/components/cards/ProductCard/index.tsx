@@ -6,6 +6,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { IoMdStar, IoMdStarOutline } from 'react-icons/io';
 import useDrawerStore from '@/stores/useDrawerStore';
 import useCartStore from '@/stores/useCartStore';
+import useModalStore from '@/stores/useModalStore';
 
 type Props = {
     product?: any;
@@ -14,10 +15,12 @@ type Props = {
 const ProductCard = ({ product }: Props) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const { openWishDrawer }:any = useDrawerStore();
+    const {openPurchaseModal}:any = useModalStore();
     const addToCart = useCartStore((state:any) => state.addToCart);
 
     const handleAddToCart = () => {
         addToCart(product);
+        openPurchaseModal();
     };
 
     const handleMouseEnter = () => {

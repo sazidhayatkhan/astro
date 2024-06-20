@@ -31,13 +31,14 @@ const SidecartDrawer = () => {
         <button onClick={closeDrawer}>Close</button>
         <div className={`${styles.drawerContent} px-3 h-[calc(100vh-100px)] overflow-hidden overflow-y-auto`}>
           {/* Drawer content goes here */}
-          {
-            [...Array(12)].map((i:any)=>(
+          { 
+           cart?.length > 0 &&
+            cart?.map((item:any,i:any)=>(
               <div key={i} className='flex items-start gap-1 my-2'>
                 <div className='flex items-start border'>
-                  <div className=''>
+                  <div className='w-[20%]'>
                     <Image
-                      src="/images/products/prod4.webp"
+                      src={item?.thumbnail || "/images/products/prod4.webp"}
                       alt="img"
                       width={0}
                       height={0}
@@ -45,18 +46,18 @@ const SidecartDrawer = () => {
                       className="w-full h-[70px] object-contain"
                     />
                   </div>
-                  <div className='border-l-[1px] p-2'>
-                    <p className='text-sm font-medium text-gray-500 mb-1 w-[250px]'>Eyeshadow Palette Eyeshadow Palette Eyeshadow Palette</p>
-                    <p className='text-black font-semibold mb-1'>$123.00</p>
-                    <div className='flex items-center border border-gray-500 w-[36.5%]'>
+                  <div className='w-[80%] border-l-[1px] p-2'>
+                    <p className='text-sm font-medium text-gray-500 mb-1 w-[210px]'>{item?.title}</p>
+                    <p className='text-black font-semibold mb-1'>{item?.price}</p>
+                    <div className='flex items-center'>
                       <button className='bg-slate-200 px-2 py-[1px]'>-</button>
-                      <p className='px-4'>1</p>
+                      <p className='px-4 border'>1</p>
                       <button className='bg-slate-400 px-2 py-[1px]'>+</button>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <button>
+                  <button onClick={() => removeFromCart(item?.id)}>
                     <FaRegTrashAlt/>
                   </button>
                 </div>

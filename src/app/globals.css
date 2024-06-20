@@ -17,6 +17,17 @@ body {
         font-family: "Playfair Display", sans-serif;
       }
 }
+html, body {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+}
+  
+/* For Webkit-based browsers like Chrome, Safari, and Opera */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+   display: none;
+}
+
 .button-hover {
     position: relative;
     display: inline-block;
